@@ -268,3 +268,28 @@ body.screenshot-mode .action-bar{padding-top:8px}
   .prefecture-list{overflow:hidden}
   .overseas-list{overflow:hidden;max-height:none}
 }
+
+
+/* v3: mascot image is embedded in index.html so GitHub cannot lose the asset path */
+.hero-mascot,
+.summary-mini img,
+.edit-character img{
+  mix-blend-mode: normal !important;
+  background: transparent !important;
+}
+
+.hero-mascot-wrap{
+  background: transparent !important;
+}
+
+.hero-mascot{
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  filter: drop-shadow(0 8px 9px rgba(84,56,35,.16));
+}
+
+.summary-mini img,
+.edit-character img{
+  object-fit: cover !important;
+  object-position: center 42% !important;
+}
