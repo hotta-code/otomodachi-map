@@ -428,3 +428,32 @@ body.screenshot-mode .action-bar{padding-top:8px}
     line-height:1.05;
   }
 }
+
+
+/* v6 faithful Hoppe-kun photo */
+.hero-mascot-wrap{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+}
+.hero-mascot{
+  display:block !important;
+  height:82% !important;
+  width:auto !important;
+  max-width:94% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  mix-blend-mode:normal !important;
+  background:transparent !important;
+  filter:drop-shadow(0 7px 7px rgba(81,55,39,.14)) !important;
+}
+.summary-mini img,
+.edit-character img{
+  mix-blend-mode:normal !important;
+  object-fit:contain !important;
+  background:transparent !important;
+}
+@media(max-width:780px){
+  .hero-mascot{height:82% !important;max-width:95% !important}
+}
