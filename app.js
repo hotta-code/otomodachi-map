@@ -40,6 +40,8 @@ const E={
   overseasCount:document.getElementById("overseasCount"),
   overseasList:document.getElementById("overseasList"),
   overseasCountries:document.getElementById("overseasCountries"),
+  overseasSummaryTotal:document.getElementById("overseasSummaryTotal"),
+  overseasSummaryCountries:document.getElementById("overseasSummaryCountries"),
   selectedName:document.getElementById("selectedName"),
   friendInput:document.getElementById("friendInput"),
   minus:document.getElementById("minusButton"),
@@ -47,7 +49,9 @@ const E={
   apply:document.getElementById("applyButton"),
   reset:document.getElementById("resetButton"),
   screenshot:document.getElementById("screenshotButton"),
-  pdf:document.getElementById("pdfButton")
+  pdf:document.getElementById("pdfButton"),
+  png:document.getElementById("pngButton"),
+  share:document.getElementById("shareButton")
 };
 
 let state=loadState();
@@ -71,6 +75,8 @@ function init(){
   E.reset.addEventListener("click",resetAll);
   E.screenshot.addEventListener("click",toggleScreenshot);
   E.pdf.addEventListener("click",()=>window.print());
+  E.png.addEventListener("click",savePng);
+  E.share.addEventListener("click",shareMap);
   render();
   selectPrefecture(13,false);
 }
@@ -183,6 +189,8 @@ function render(){
   E.overseasList.innerHTML=overseas.length?overseas.map((x,i)=>`<div class="overseas-row"><span>${escapeHtml(x.name)}</span><strong>${x.count}体</strong><button type="button" data-i="${i}" aria-label="削除">×</button></div>`).join(""):'<p class="empty">まだいません</p>';
   E.overseasList.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>removeOverseas(+b.dataset.i)));
   E.overseasCountries.textContent=overseas.length;
+  E.overseasSummaryTotal.textContent=ot;
+  E.overseasSummaryCountries.textContent=overseas.length;
 
   E.regionList.innerHTML=REGIONS.map(r=>{
     const n=r.ids.reduce((s,id)=>s+count(id),0);
@@ -197,5 +205,30 @@ function renderMap(){
     p.style.fill=count(id)>0?COLOR.get(id):"#eadfce";
     p.classList.toggle("selected",id===selected);
   });
+}
+async function savePng(){
+  if(typeof html2canvas==="undefined"){alert("画像保存機能を読み込めませんでした。");return}
+  const wasScreenshot=document.body.classList.contains("screenshot-mode");
+  if(!wasScreenshot)document.body.classList.add("screenshot-mode");
+  try{
+    const canvas=await html2canvas(document.getElementById("appShell"),{
+      backgroundColor:"#f7ecd9",scale:2,useCORS:true,logging:false
+    });
+    const a=document.createElement("a");
+    a.download=`otomodachi-map-${new Date().toISOString().slice(0,10)}.png`;
+    a.href=canvas.toDataURL("image/png");
+    a.click();
+  }finally{
+    if(!wasScreenshot)document.body.classList.remove("screenshot-mode");
+  }
+}
+async function shareMap(){
+  const data={title:"ほっぺくんのおともだちMAP",text:"ほっぺくんのおともだちMAP",url:location.href};
+  if(navigator.share){
+    try{await navigator.share(data)}catch(e){}
+  }else{
+    try{await navigator.clipboard.writeText(location.href);alert("URLをコピーしました。")}
+    catch(e){prompt("このURLをコピーしてください",location.href)}
+  }
 }
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
