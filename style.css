@@ -293,3 +293,25 @@ body.screenshot-mode .action-bar{padding-top:8px}
   object-fit: cover !important;
   object-position: center 42% !important;
 }
+
+
+/* v4 character: transparent PNG, enlarged to fill its display areas */
+.hero-mascot-wrap{
+  overflow: hidden !important;
+}
+.hero-mascot{
+  width: 112% !important;
+  height: 112% !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: scale(1.08);
+  transform-origin: center center;
+}
+.summary-mini img,
+.edit-character img{
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: scale(1.18);
+  background: transparent !important;
+}
