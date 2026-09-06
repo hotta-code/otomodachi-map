@@ -413,3 +413,18 @@ body.screenshot-mode .action-bar{padding-top:8px}
 @media print{
   .action-bar,.edit-card,.coffee-note,.overseas-form{display:none!important}
 }
+
+
+/* v5: longer title "ほっぺくんのおともだちMAP" */
+.hero-title h1{
+  font-size:clamp(2.25rem,4.35vw,4.75rem);
+  letter-spacing:-0.015em;
+  white-space:nowrap;
+}
+@media(max-width:780px){
+  .hero-title h1{
+    font-size:1.42rem;
+    white-space:normal;
+    line-height:1.05;
+  }
+}
