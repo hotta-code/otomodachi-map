@@ -1,10 +1,26 @@
 # ほっぺくんのおともだちMAP
 
-GitHub Pages公開用。添付されたほっぺくんの実物写真を、形・顔・色を描き直さず背景だけ透過して使用しています。
+GitHub Pages公開用の完成版です。
 
-## 画像表示対策
-- `assets/hoppekun-exact.png` に透過PNGを収録
-- 同じPNGを `index.html` 内にも直接埋め込み
-- assetsフォルダのアップロード漏れがあっても、ほっぺくんは表示されます
+## 内容
+- 添付写真のほっぺくんを忠実に使用
+- 背景透過したほっぺくんをヘッダー左側に配置
+- タイトル文字とキャラクターが重ならないレイアウト
+- 実際の47都道府県GeoJSON
+- 47都道府県の一覧表示と人数登録
+- 海外のおともだち登録
+- エリア別集計
+- PNG保存
+- PDF保存
+- MAP共有
+- スマホ対応
+- 忍者MAPとは保存データを完全分離
 
-ZIPを展開し、中身すべてを `otomodachi-map` リポジトリ直下へ上書きアップロードしてください。
+## GitHubへアップロード
+1. このZIPを展開
+2. 中身をすべて `otomodachi-map` リポジトリ直下へアップロード
+3. Commit changes
+4. GitHub Pagesは `main` / `/(root)` のままでOK
+
+公開URL:
+https://hotta-code.github.io/otomodachi-map/
